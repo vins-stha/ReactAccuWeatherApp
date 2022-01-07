@@ -1,23 +1,17 @@
 import logo from './logo.svg';
 import './App.css';
+import WeatherCard from './components/WeatherCard';
+import Nav from './components/Nav';
+// import bootstrap from '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import bootstrap  from '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import { Results } from './components/Results';
 
+// RyXbAA7UNoCtgIyXBfGvYGauaRATt2cM
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container dark-bg">
+    <Nav/>
+    <WeatherCard/>
     </div>
   );
 }
