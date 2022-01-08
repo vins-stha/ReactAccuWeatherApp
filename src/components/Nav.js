@@ -18,7 +18,8 @@ export default function Nav() {
     const [locationKeys, setLocationKyes] = useState([])
 
     const imageBaseUrl = `${process.env.REACT_APP_IMAGE_URL}` //number.svg
-    const apikey = 'JAMXpRhdmxgcwICiCJBXZIjOLlJi0K5M'// 
+    const apikey = 'ZbhK4z7IGp4N5IkIsZQyyx54gEsA9JGy'
+    // `${process.env.REACT_APP_API_KEY}`
     const baseSearchUrl = `${process.env.REACT_APP_CITY_SEARCH_URL}`
 
     let searchParam = {}
