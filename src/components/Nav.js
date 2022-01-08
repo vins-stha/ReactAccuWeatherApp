@@ -99,6 +99,7 @@ export default function Nav() {
         if (searchParam.city !== undefined) 
         {
             // to get list of locaitonKeys
+            console.log('search city = ', searchParam)
             searchLocationKeyWithText(searchParam)
         }
         else if (searchParam.ip !== undefined)
@@ -138,7 +139,7 @@ export default function Nav() {
     }
     // get location/citykey to prceed to make call for forcast
     async function getLocationKey(searchUrl) {
-        
+        console.log('search url for location key =>', searchUrl)
         await fetch(searchUrl,
             {
                 proxy: 'https://61d8cd7648a39c60fe746d47--flamboyant-allen-2e2a99.netlify.app/'
