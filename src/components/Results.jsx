@@ -13,7 +13,7 @@ export const Results = (params) => {
             <div className="results-container">
                 <div className="main-result day">
                     <h6 className="">Current weather in </h6>
-                    <pre className="title">DAY</pre>
+                    <pre className="title">DAY {Date}</pre>
                     <div className="contents">
                         <img alt=""
                             className="weather-icon icon"

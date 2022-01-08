@@ -1,51 +1,29 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { wait } from '@testing-library/user-event/dist/utils';
 import { Results } from './Results';
 
 
 export default function Nav() {
 
-    
-    const [lat, setLat] = useState(null);
-    const [lng, setLong] = useState(null);
-    const [status, setStatus] = useState('');
     const [city, setCity] = useState('');
     const [ip, setIP] = useState('');
-    const [locationStatus, setLocationStatus] = useState(false);
     const [locationKey, setLocationKey] = useState('');
     const [forecasts, setForecasts] = useState([]);
-    const [locationKeys, setLocationKyes] = useState([])
-
-    const imageBaseUrl = `${process.env.REACT_APP_IMAGE_URL}` //number.svg
-    const apikey = 'ZbhK4z7IGp4N5IkIsZQyyx54gEsA9JGy'
-    // `${process.env.REACT_APP_API_KEY}`
+   
+    const apikey = `${process.env.REACT_APP_API_KEY}`
     const baseSearchUrl = `${process.env.REACT_APP_CITY_SEARCH_URL}`
 
     let searchParam = {}
-    let gps = false
-
+    
     useEffect(() => {
         getIP()       
     }, [])
 
-    function get_location() {
-        console.log('clicked')
-        getLocation()
+    const getIP = async () => {
+        const res = await axios.get('https://geolocation-db.com/json/')
+        setIP(res.data.IPv4)
+      
     }
-
-    function setUserLocation(position) {  // callback function 
-
-        console.log("In setUserLocation", position)
-        // setLat(position.coords.latitude);
-        // setLong(position.coords.longitude);     // never executed -- why?
-
-        let laat = position.coords.latitude
-        let lnng = position.coords.longitude
-
-        console.log('we got your location', laat, lnng)
-    }
-
     function getLocation() {
 
         if (!navigator.geolocation) {
@@ -68,13 +46,7 @@ export default function Nav() {
             );
         }
     }
-
-    const getIP = async () => {
-        const res = await axios.get('https://geolocation-db.com/json/')
-        setIP(res.data.IPv4)
-      
-    }
-  
+ 
     function handleSearch(e) {
         e.preventDefault();
 
@@ -99,8 +71,7 @@ export default function Nav() {
         let searchUrl
         if (searchParam.city !== undefined) 
         {
-            // to get list of locaitonKeys
-            console.log('search city = ', searchParam)
+            // to get list of locaitonKeys            
             searchLocationKeyWithText(searchParam)
         }
         else if (searchParam.ip !== undefined)
@@ -120,8 +91,7 @@ export default function Nav() {
     function searchLocationKeyWithText(searchParam){
 
          const searchUrl = baseSearchUrl + `search?apikey=${apikey}&q=${searchParam.city}`
-            console.log('serach url ', searchUrl)
-
+            
             fetch(searchUrl,
                 {
                     proxy: 'https://61d8cd7648a39c60fe746d47--flamboyant-allen-2e2a99.netlify.app/' // 
@@ -130,7 +100,6 @@ export default function Nav() {
                     // console.log('resp=>', response);
                     response.json().then((data) => {
 
-                        console.log('data-length =>', data.length,'data =>', data[0].Key);
                         makeAPICall(data[0].Key)                                       
                         
                     });
@@ -140,7 +109,7 @@ export default function Nav() {
     }
     // get location/citykey to prceed to make call for forcast
     async function getLocationKey(searchUrl) {
-        console.log('search url for location key =>', searchUrl)
+        
         await fetch(searchUrl,
             {
                 proxy: 'https://61d8cd7648a39c60fe746d47--flamboyant-allen-2e2a99.netlify.app/'
@@ -161,9 +130,8 @@ export default function Nav() {
     }
 
     // finally fetch weather data for the city with locationkey
-    const makeAPICall = (locationKey) => {
-        let isLoaded = false
-        let items = {}
+    const makeAPICall = (locationKey) => {       
+        
         const url = `https://dataservice.accuweather.com/forecasts/v1/daily/1day/${locationKey}?apikey=${apikey}`
 
         console.log('KEY=', locationKey, url)

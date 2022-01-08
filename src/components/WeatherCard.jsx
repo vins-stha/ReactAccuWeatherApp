@@ -1,11 +1,8 @@
 
-import {React, useState, useEffect} from 'react'
-import { ReactDOM } from 'react-dom';
+import {React, useState} from 'react'
 
 export default function WeatherCard() {
-    const [city, setCity] = useState('');
-    const imageBaseUrl = `${process.env.REACT_APP_IMAGE_URL}` //number.svg
-
+    const imageBaseUrl = `${process.env.REACT_APP_IMAGE_URL}` 
     return (
         <div>
         <div className="results-container">
