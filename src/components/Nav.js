@@ -90,7 +90,7 @@ export default function Nav() {
             
             fetch(searchUrl,
                 {
-                    proxy: 'https://61d8cd7648a39c60fe746d47--flamboyant-allen-2e2a99.netlify.app/' // 
+                    proxy: 'https://61d8cd7648a39c60fe746d47--flamboyant-allen-2e2a99.netlify.app/' 
                 })
                 .then((response) => {
                     // console.log('resp=>', response);
@@ -100,8 +100,7 @@ export default function Nav() {
                         
                     });
                 })
-                .catch(err => console.log('err', err));
-                
+                .catch(err => console.log('err', err));                
     }
 
     // get location/citykey to prceed to make call for forcast
@@ -111,18 +110,16 @@ export default function Nav() {
             {
                 proxy: 'https://61d8cd7648a39c60fe746d47--flamboyant-allen-2e2a99.netlify.app/'
             })
-            .then((response) => {
-                response.json().then((data) => {
-                    try {
-                        setLocationKey(data.Key)
-                        makeAPICall(locationKey === undefined ? data.key : locationKey)
-                    } catch (error) {
-                        console.log('error occured', error)
-
-                    }
-                });
+            .then ((response)=>response.json())
+            .then((data)=>{
+                try {
+                    setLocationKey(data.Key)
+                    makeAPICall(locationKey === undefined ? data.key : locationKey)
+                } catch (error) {
+                    console.log('error occured', error)
+                }
             })
-            .catch(err => console.log('err', err));
+            .catch(err => console.log(err));
     }
 
     // finally fetch weather data for the city with locationkey
@@ -132,7 +129,7 @@ export default function Nav() {
        
         fetch(url,
             {
-                proxy: 'https://61d8cd7648a39c60fe746d47--flamboyant-allen-2e2a99.netlify.app/'//'http://localhost:3000/'
+                proxy: 'https://61d8cd7648a39c60fe746d47--flamboyant-allen-2e2a99.netlify.app/'
             })
             .then((response) => {
                 // console.log('resp=>', response);
@@ -140,7 +137,7 @@ export default function Nav() {
                     data.DailyForecasts.length > 0 ? setForecasts(data.DailyForecasts) : setForecasts([]);
                    });
             })
-            .catch(err => console.log('err', err));
+            .catch(err => console.log());
     }
 
     const weatherData = forecasts.map((forecast,id)=>{
