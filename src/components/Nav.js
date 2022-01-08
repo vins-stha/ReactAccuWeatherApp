@@ -131,7 +131,7 @@ export default function Nav() {
                     response.json().then((data) => {
 
                         console.log('data-length =>', data.length,'data =>', data[0].Key);
-                        // makeAPICall(city[0].Key)                                       
+                        makeAPICall(city[0].Key)                                       
                         
                     });
                 })
