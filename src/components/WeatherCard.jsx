@@ -1,48 +1,59 @@
+import React from 'react'
 
-import {React, useState} from 'react'
+export const WeatherCard = (params) => {
+    const { Date, Temperature, Day, Night } = params.attrs
 
-export default function WeatherCard() {
-    const imageBaseUrl = `${process.env.REACT_APP_IMAGE_URL}` 
+    const imageBaseUrl = `${process.env.REACT_APP_IMAGE_URL}` //number.svg
+
+    function toCelsius(tempFah) {
+        return Math.round((tempFah - 32) * (5 / 9))
+    }
     return (
         <div>
-        <div className="results-container">
-            <div className="main-result day">
-                <h6 className="">Current weather in </h6>
-                <pre className="title">DAY</pre>
-                <div className="contents">
-                    <img alt=""
-                        className="weather-icon icon"
-                        width="128px"
-                        height="128px"
-                        data-eager=""
-                        src={`${imageBaseUrl}4.svg`}
-                    />
-                    <div className="temp">-8°C</div>
-                    <div className="hi-lo-label">Hi</div>
+            <div className="results-container">
+                <div className="main-result day">
+                    <h6 className="">Current weather in </h6>
+                    <pre className="title">DAY {Date.toString().substr(0,10)}</pre>
+                    <div className="contents">
+                        <img alt=""
+                            className="weather-icon icon"
+                            width="128px"
+                            height="128px"
+                            data-eager=""
+                            src={`${imageBaseUrl}${Day.Icon}.svg`}
+                        />
+                        <div className="temp">{toCelsius(Temperature.Maximum.Value)}°C</div>
+                        <div className="hi-lo-label">Hi</div>
+
+                    </div>
+                    <p className="phrase">{Day.IconPhrase}</p>
 
                 </div>
-                <p className="phrase">dfghfjkhhfgdh</p>
+                <div className="main-result night">
 
-            </div>
-            <div className="main-result night">
-                <h6 className="">Current weather in </h6>
-                <pre className="title">NIGHT</pre>
-                <div className="contents">
-                    <img alt=""
-                        className="weather-icon icon"
-                        width="128px"
-                        height="128px"
-                        data-eager=""
-                        src={`${imageBaseUrl}4.svg`}
-                    />
-                    <div className="temp">-8°C</div>
-                    <div className="hi-lo-label">Hi</div>
+                    <h6 className="">Current weather in </h6>
+                    <pre className="title">NIGHT </pre>
+                    <div className="contents">
 
+                        <img alt=""
+                            className="weather-icon icon"
+                            width="128px"
+                            height="128px"
+                            data-eager=""
+                            src={`${imageBaseUrl}${Night.Icon}.svg`}
+                        />
+
+                        <div className="temp">{toCelsius(Temperature.Minimum.Value)}°C</div>
+                        <div className="hi-lo-label">Lo</div>
+
+                    </div>
+                    <p className="phrase">{Night.IconPhrase}</p>
                 </div>
-                <p className="phrase">dfghfjkhhfgdh</p>
 
             </div>
         </div>
-    </div>
     )
 }
+
+
+

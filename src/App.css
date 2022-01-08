@@ -145,3 +145,24 @@ body {
     border-left: none;
   }
 }
+
+@media screen and (max-width:330px) {
+  .nav-logo {
+    width: 100%; 
+    margin-top: 2rem;
+    text-align: center;
+  }
+  .nav-logo {
+    width: 100%;
+  }
+  .citybox {
+    display: flex;
+    flex-direction: column;
+  }
+  .searchBox {
+    width: 85%;
+  }
+  .results-container {
+    margin-top: 2rem;
+  }
+ }

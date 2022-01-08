@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Results } from './Results';
+import { WeatherCard } from './WeatherCard';
 
 
 export default function Nav() {
@@ -151,7 +151,7 @@ export default function Nav() {
 
     const weatherData = forecasts.map((forecast,id)=>{
         
-        return <Results key={forecast.id} attrs = {forecast}/>
+        return <WeatherCard key={id} attrs = {forecast}/>
     })
    
     return (
