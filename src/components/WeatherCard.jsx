@@ -2,6 +2,7 @@ import React from 'react'
 
 export const WeatherCard = (params) => {
     const { Date, Temperature, Day, Night } = params.attrs
+    const city = params.city
 
     const imageBaseUrl = `${process.env.REACT_APP_IMAGE_URL}` //number.svg
 
@@ -10,9 +11,11 @@ export const WeatherCard = (params) => {
     }
     return (
         <div>
+            <h6 className="">Weather Forecast for {city} </h6>
             <div className="results-container">
+            
                 <div className="main-result day">
-                    <h6 className="">Current weather in </h6>
+                   
                     <pre className="title">DAY {Date.toString().substr(0,10)}</pre>
                     <div className="contents">
                         <img alt=""
@@ -31,7 +34,6 @@ export const WeatherCard = (params) => {
                 </div>
                 <div className="main-result night">
 
-                    <h6 className="">Current weather in </h6>
                     <pre className="title">NIGHT </pre>
                     <div className="contents">
 

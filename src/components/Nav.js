@@ -54,14 +54,11 @@ export default function Nav() {
             console.log('null city...seraching for ip ', ip)
             searchParam = { ip }
             searchCity(searchParam)
-            //   weatherData(data)
         }
-
         else {
             console.log('searching for ...', city)
             searchParam = {city}
             searchCity(searchParam)
-            //   weatherData(city)
         }
     }
 
@@ -87,7 +84,6 @@ export default function Nav() {
     }
 
     // search with cityname
-
     function searchLocationKeyWithText(searchParam){
 
          const searchUrl = baseSearchUrl + `search?apikey=${apikey}&q=${searchParam.city}`
@@ -107,6 +103,7 @@ export default function Nav() {
                 .catch(err => console.log('err', err));
                 
     }
+
     // get location/citykey to prceed to make call for forcast
     async function getLocationKey(searchUrl) {
         
@@ -126,22 +123,19 @@ export default function Nav() {
                 });
             })
             .catch(err => console.log('err', err));
-
     }
 
     // finally fetch weather data for the city with locationkey
     const makeAPICall = (locationKey) => {       
         
         const url = `https://dataservice.accuweather.com/forecasts/v1/daily/1day/${locationKey}?apikey=${apikey}`
-
-        console.log('KEY=', locationKey, url)
-
+       
         fetch(url,
             {
                 proxy: 'https://61d8cd7648a39c60fe746d47--flamboyant-allen-2e2a99.netlify.app/'//'http://localhost:3000/'
             })
             .then((response) => {
-                console.log('resp=>', response);
+                // console.log('resp=>', response);
                 response.json().then((data) => {
                     data.DailyForecasts.length > 0 ? setForecasts(data.DailyForecasts) : setForecasts([]);
                    });
@@ -151,7 +145,7 @@ export default function Nav() {
 
     const weatherData = forecasts.map((forecast,id)=>{
         
-        return <WeatherCard key={id} attrs = {forecast}/>
+        return <WeatherCard key={id} attrs = {forecast} city={city}/>
     })
    
     return (
@@ -165,7 +159,7 @@ export default function Nav() {
                     <input
                         type="text"
                         className='searchBox'
-                        placeholder="Enter yoru city nema"
+                        placeholder="Enter name of city"
                         value={city}
                         onChange={(e) => setCity(e.target.value)}
                     />
