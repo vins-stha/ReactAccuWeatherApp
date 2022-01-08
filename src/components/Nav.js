@@ -124,14 +124,14 @@ export default function Nav() {
 
             fetch(searchUrl,
                 {
-                    proxy: 'http://localhost:3000/'// 'https://61d8cd7648a39c60fe746d47--flamboyant-allen-2e2a99.netlify.app/' // 
+                    proxy: 'https://61d8cd7648a39c60fe746d47--flamboyant-allen-2e2a99.netlify.app/' // 
                 })
                 .then((response) => {
                     // console.log('resp=>', response);
                     response.json().then((data) => {
 
                         console.log('data-length =>', data.length,'data =>', data[0].Key);
-                        makeAPICall(city[0].Key)                                       
+                        makeAPICall(data[0].Key)                                       
                         
                     });
                 })
@@ -143,7 +143,7 @@ export default function Nav() {
         console.log('search url for location key =>', searchUrl)
         await fetch(searchUrl,
             {
-                proxy: 'http://localhost:3000/'//'https://61d8cd7648a39c60fe746d47--flamboyant-allen-2e2a99.netlify.app/'
+                proxy: 'https://61d8cd7648a39c60fe746d47--flamboyant-allen-2e2a99.netlify.app/'
             })
             .then((response) => {
                 response.json().then((data) => {
@@ -170,7 +170,7 @@ export default function Nav() {
 
         fetch(url,
             {
-                proxy: 'http://localhost:3000/'//'https://61d8cd7648a39c60fe746d47--flamboyant-allen-2e2a99.netlify.app/'//'http://localhost:3000/'
+                proxy: 'https://61d8cd7648a39c60fe746d47--flamboyant-allen-2e2a99.netlify.app/'//'http://localhost:3000/'
             })
             .then((response) => {
                 console.log('resp=>', response);
@@ -182,7 +182,8 @@ export default function Nav() {
     }
 
     const weatherData = forecasts.map((forecast,id)=>{
-        return <Results key ={forecast.id} attrs = {forecast}/>
+        
+        return <Results key={forecast.id} attrs = {forecast}/>
     })
    
     return (
