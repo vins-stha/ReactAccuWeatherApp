@@ -124,7 +124,7 @@ export default function Nav() {
 
             fetch(searchUrl,
                 {
-                    proxy: 'https://61d8cd7648a39c60fe746d47--flamboyant-allen-2e2a99.netlify.app/' // 'http://localhost:3000/'
+                    proxy: 'http://localhost:3000/'// 'https://61d8cd7648a39c60fe746d47--flamboyant-allen-2e2a99.netlify.app/' // 
                 })
                 .then((response) => {
                     // console.log('resp=>', response);
@@ -143,7 +143,7 @@ export default function Nav() {
         console.log('search url for location key =>', searchUrl)
         await fetch(searchUrl,
             {
-                proxy: 'https://61d8cd7648a39c60fe746d47--flamboyant-allen-2e2a99.netlify.app/'
+                proxy: 'http://localhost:3000/'//'https://61d8cd7648a39c60fe746d47--flamboyant-allen-2e2a99.netlify.app/'
             })
             .then((response) => {
                 response.json().then((data) => {
@@ -170,7 +170,7 @@ export default function Nav() {
 
         fetch(url,
             {
-                proxy: 'https://61d8cd7648a39c60fe746d47--flamboyant-allen-2e2a99.netlify.app/'//'http://localhost:3000/'
+                proxy: 'http://localhost:3000/'//'https://61d8cd7648a39c60fe746d47--flamboyant-allen-2e2a99.netlify.app/'//'http://localhost:3000/'
             })
             .then((response) => {
                 console.log('resp=>', response);
